@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - EventPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>EventPro</h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="booking.html" class="btn btn-primary">Plan Your Event</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> / <span>Gallery</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore Our Events</h2>
+                <p>Browse through our portfolio of stunning events and get inspired</p>
+            </div>
+
+            <!-- Gallery Filters -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-category="all">All Events</button>
+                <button class="filter-btn" data-category="weddings">Weddings</button>
+                <button class="filter-btn" data-category="corporate">Corporate</button>
+                <button class="filter-btn" data-category="birthdays">Birthdays</button>
+                <button class="filter-btn" data-category="social">Social Events</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Wedding Images -->
+                <div class="gallery-item" data-category="weddings">
+                    <img src="/api/placeholder/600/400" alt="Elegant Wedding Reception">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Elegant Wedding Reception</h3>
+                            <p>Sarah & Michael, May 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Elegant Wedding Reception" data-desc="Sarah & Michael's elegant wedding reception featuring a romantic candlelit atmosphere, floral centerpieces, and a customized dance floor.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="weddings">
+                    <img src="/api/placeholder/600/400" alt="Garden Wedding Ceremony">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Garden Wedding Ceremony</h3>
+                            <p>Emily & David, June 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Garden Wedding Ceremony" data-desc="Emily & David's beautiful garden ceremony with custom floral arches and an intimate setting for 75 guests.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="weddings">
+                    <img src="/api/placeholder/600/400" alt="Beachfront Wedding Setup">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Beachfront Wedding Setup</h3>
+                            <p>Jessica & Thomas, July 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Beachfront Wedding Setup" data-desc="Jessica & Thomas's romantic beachfront ceremony featuring sandy pathways, tropical flowers, and a spectacular sunset backdrop.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corporate Images -->
+                <div class="gallery-item" data-category="corporate">
+                    <img src="/api/placeholder/600/400" alt="Annual Corporate Gala">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Annual Corporate Gala</h3>
+                            <p>TechCorp, March 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Annual Corporate Gala" data-desc="TechCorp's annual gala event featuring custom branding, interactive tech displays, and a sophisticated dining experience for 250 executives.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <img src="/api/placeholder/600/400" alt="Product Launch Event">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Product Launch Event</h3>
+                            <p>InnovateTech, April 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Product Launch Event" data-desc="InnovateTech's dynamic product launch with custom staging, branded experience zones, and media presentation areas.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="corporate">
+                    <img src="/api/placeholder/600/400" alt="Leadership Conference">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Leadership Conference</h3>
+                            <p>Global Industries, February 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Leadership Conference" data-desc="Global Industries' two-day leadership conference with breakout session rooms, networking spaces, and a central presentation hall.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Birthday Images -->
+                <div class="gallery-item" data-category="birthdays">
+                    <img src="/api/placeholder/600/400" alt="Luxury 30th Birthday Party">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Luxury 30th Birthday Party</h3>
+                            <p>Amanda's Celebration, January 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Luxury 30th Birthday Party" data-desc="Amanda's glamorous 30th birthday celebration with gold accents, custom cocktail bar, and dance floor with professional lighting.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="birthdays">
+                    <img src="/api/placeholder/600/400" alt="Children's Themed Birthday">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Children's Themed Birthday</h3>
+                            <p>Max's 5th Birthday, May 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Children's Themed Birthday" data-desc="Max's superhero-themed 5th birthday party with interactive games, custom decorations, and character appearances.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="birthdays">
+                    <img src="/api/placeholder/600/400" alt="Surprise 50th Birthday">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Surprise 50th Birthday</h3>
+                            <p>Robert's Celebration, June 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Surprise 50th Birthday" data-desc="Robert's surprise 50th birthday featuring memories from different decades, gourmet dining, and personalized entertainment.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Events Images -->
+                <div class="gallery-item" data-category="social">
+                    <img src="/api/placeholder/600/400" alt="Charity Fundraiser Gala">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Charity Fundraiser Gala</h3>
+                            <p>Hope Foundation, August 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Charity Fundraiser Gala" data-desc="Hope Foundation's annual fundraiser with auction displays, donor recognition elements, and an elegant dining experience for 300 guests.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="social">
+                    <img src="/api/placeholder/600/400" alt="Holiday Celebration">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Holiday Celebration</h3>
+                            <p>Winter Wonderland, December 2023</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Holiday Celebration" data-desc="Winter Wonderland holiday party featuring custom ice sculptures, festive décor, and an immersive dining experience.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="social">
+                    <img src="/api/placeholder/600/400" alt="Graduation Celebration">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Graduation Celebration</h3>
+                            <p>Class of 2024, June 2024</p>
+                            <a href="#" class="gallery-zoom" data-img="/api/placeholder/1200/800" data-title="Graduation Celebration" data-desc="A celebratory event for graduates featuring school colors, memory displays, and a mix of formal and casual spaces for 150 attendees.">
+                                <i class="fas fa-search-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button id="load-more-btn" class="btn btn-secondary">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Popup / Lightbox -->
+    <div class="gallery-lightbox">
+        <div class="lightbox-content">
+            <span class="close-lightbox"><i class="fas fa-times"></i></span>
+            <img id="lightbox-img" src="" alt="Expanded Gallery Image">
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
+            </div>
+            <div class="lightbox-controls">
+                <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Love What You See?</h2>
+                <p>Let us bring your vision to life with the same creativity and attention to detail</p>
+                <div class="cta-buttons">
+                    <a href="booking.html" class="btn btn-primary btn-large">Plan Your Event</a>
+                    <a href="contact.html" class="btn btn-outline btn-large">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>EventPro</h2>
+                    </div>
+                    <p>Creating memorable events since 2015. We bring your vision to life with professional planning and flawless execution.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#weddings">Wedding Planning</a></li>
+                        <li><a href="services.html#corporate">Corporate Events</a></li>
+                        <li><a href="services.html#birthdays">Birthday Parties</a></li>
+                        <li><a href="services.html#social">Social Gatherings</a></li>
+                        <li><a href="services.html#decor">Decor & Design</a></li>
+                        <li><a href="services.html#catering">Catering Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Event Street, Suite 300, New York, NY 10001</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@eventpro.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am - 6pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EventPro. All rights reserved.</p>
+                <ul class="footer-legal">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/gallery.js"></script>
+</body>
+</html>

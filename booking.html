@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Event - EventPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Booking Page Specific Styles */
+        .booking-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+            min-height: calc(100vh - 300px);
+        }
+
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .booking-form {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .booking-form h2 {
+            margin-bottom: 25px;
+            color: var(--dark-color);
+            font-size: 28px;
+        }
+
+        .booking-form p {
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-grid .form-group:last-child {
+            grid-column: 1 / -1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: var(--border-radius-sm);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: var(--border-radius-sm);
+            font-size: 16px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: var(--border-radius-sm);
+            font-size: 16px;
+            height: 120px;
+            resize: vertical;
+        }
+
+        .date-time-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .guests-budget-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-group {
+            margin-top: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-item input {
+            margin-right: 10px;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff5252;
+        }
+
+        .terms-agreement {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .terms-agreement a {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 30px;
+        }
+
+        .booking-info {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 30px;
+        }
+
+        .booking-info h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .info-item i {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-right: 15px;
+            margin-top: 2px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .info-content p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .booking-cta {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .booking-cta h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .booking-cta p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .calendar-widget {
+            margin-top: 30px;
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .calendar-widget h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            text-align: center;
+        }
+
+        .calendar {
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius-sm);
+            padding: 15px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .calendar-header h4 {
+            font-size: 16px;
+            color: var(--dark-color);
+        }
+
+        .calendar-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .calendar-controls button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .calendar-date {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-date:hover {
+            background-color: #f0f0f0;
+        }
+
+        .calendar-date.current {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .calendar-date.booked {
+            background-color: #ffe9e9;
+            color: #ff5252;
+            cursor: not-allowed;
+        }
+
+        .calendar-date.available {
+            background-color: #e9ffe9;
+            color: #52b788;
+        }
+
+        @media (max-width: 992px) {
+            .booking-container {
+                max-width: 90%;
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .date-time-grid,
+            .guests-budget-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .booking-container {
+                max-width: 95%;
+            }
+
+            .info-item {
+                flex-direction: column;
+            }
+
+            .info-item i {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>EventPro</h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="booking.html" class="btn btn-primary active">Plan Your Event</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Plan Your Event With Us</h1>
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> / <span>Event Booking</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-container">
+                <!-- Booking Form -->
+                <div class="booking-form">
+                    <h2>Event Reservation Form</h2>
+                    <p>Fill out the form below to start planning your perfect event. Our team will contact you within 24 hours to discuss further details.</p>
+                    
+                    <form id="booking-form">
+                        <div class="form-grid">
+                            <!-- Personal Information -->
+                            <div class="form-group">
+                                <label for="first-name">First Name *</label>
+                                <input type="text" id="first-name" class="form-input" placeholder="Your first name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="last-name">Last Name *</label>
+                                <input type="text" id="last-name" class="form-input" placeholder="Your last name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" class="form-input" placeholder="Your email address" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" class="form-input" placeholder="Your phone number" required>
+                            </div>
+                            
+                            <!-- Event Details -->
+                            <div class="form-group full-width">
+                                <label for="event-type">Event Type *</label>
+                                <select id="event-type" class="form-select" required>
+                                    <option value="" disabled selected>Select event type</option>
+                                    <option value="wedding">Wedding</option>
+                                    <option value="corporate">Corporate Event</option>
+                                    <option value="birthday">Birthday Party</option>
+                                    <option value="anniversary">Anniversary</option>
+                                    <option value="graduation">Graduation</option>
+                                    <option value="social">Social Gathering</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width date-time-grid">
+                                <div>
+                                    <label for="event-date">Event Date *</label>
+                                    <input type="date" id="event-date" class="form-input" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="event-time">Event Time *</label>
+                                    <input type="time" id="event-time" class="form-input" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="event-location">Preferred Venue/Location</label>
+                                <select id="event-location" class="form-select">
+                                    <option value="" disabled selected>Select preferred venue</option>
+                                    <option value="crystal-ballroom">Crystal Ballroom</option>
+                                    <option value="garden-pavilion">Garden Pavilion</option>
+                                    <option value="seaside-terrace">Seaside Terrace</option>
+                                    <option value="grand-hall">Grand Hall</option>
+                                    <option value="rooftop-lounge">Rooftop Lounge</option>
+                                    <option value="client-location">Client's Location</option>
+                                    <option value="undecided">Undecided (Need Recommendations)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width guests-budget-grid">
+                                <div>
+                                    <label for="guests">Number of Guests *</label>
+                                    <input type="number" id="guests" class="form-input" placeholder="Estimated number of guests" min="1" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="budget">Budget Range ($) *</label>
+                                    <select id="budget" class="form-select" required>
+                                        <option value="" disabled selected>Select budget range</option>
+                                        <option value="1000-3000">$1,000 - $3,000</option>
+                                        <option value="3000-5000">$3,000 - $5,000</option>
+                                        <option value="5000-10000">$5,000 - $10,000</option>
+                                        <option value="10000-20000">$10,000 - $20,000</option>
+                                        <option value="20000+">$20,000+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Services Required -->
+                            <div class="form-group full-width">
+                                <label>Services Required</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="service-planning" name="services[]" value="planning">
+                                        <label for="service-planning">Full Event Planning</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="service-decor" name="services[]" value="decor">
+                                        <label for="service-decor">Decoration & Design</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="service-catering" name="services[]" value="catering">
+                                        <label for="service-catering">Catering & Beverages</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="service-entertainment" name="services[]" value="entertainment">
+                                        <label for="service-entertainment">Entertainment & Music</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="service-photography" name="services[]" value="photography">
+                                        <label for="service-photography">Photography & Videography</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="service-transportation" name="services[]" value="transportation">
+                                        <label for="service-transportation">Transportation</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Additional Information -->
+                            <div class="form-group full-width">
+                                <label for="event-description">Additional Information</label>
+                                <textarea id="event-description" class="form-textarea" placeholder="Tell us more about your event, special requirements, theme ideas, or any questions you may have."></textarea>
+                            </div>
+                            
+                            <!-- How did you hear about us -->
+                            <div class="form-group full-width">
+                                <label for="referral">How did you hear about us?</label>
+                                <select id="referral" class="form-select">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="search">Search Engine</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="friend">Friend or Family</option>
+                                    <option value="event">Attended an Event</option>
+                                    <option value="magazine">Magazine/Publication</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <label for="terms">I agree to the <a href="#" style="color: var(--primary-color);">Terms & Conditions</a> *</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Submit Booking Request</button>
+                        
+                        <div class="terms-agreement">
+                            <p>By submitting this form, you agree to our <a href="#">Privacy Policy</a> and consent to being contacted about your event.</p>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Why Choose Us -->
+                    <div class="booking-info">
+                        <h3>Why Book With EventPro?</h3>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="info-content">
+                                <h4>Experienced Team</h4>
+                                <p>Our event planners have 10+ years of experience creating memorable events.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="info-content">
+                                <h4>Personalized Service</h4>
+                                <p>We tailor every detail to match your vision and exceed expectations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="info-content">
+                                <h4>Premium Venues</h4>
+                                <p>Access to exclusive locations that will wow your guests.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="info-content">
+                                <h4>All-Inclusive Packages</h4>
+                                <p>Comprehensive services to handle every aspect of your event.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action -->
+                    <div class="booking-cta">
+                        <h3>Need Immediate Assistance?</h3>
+                        <p>Our event specialists are available to answer your questions and provide personalized guidance.</p>
+                        <a href="tel:5551234567" class="btn btn-primary" style="width: 100%; margin-bottom: 15px;">
+                            <i class="fas fa-phone"></i> Call Us Now
+                        </a>
+                        <a href="contact.html" class="btn btn-outline" style="width: 100%;">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </div>
+                    
+                    <!-- Availability Calendar -->
+                    <div class="calendar-widget">
+                        <h3>Availability Calendar</h3>
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <h4>April 2025</h4>
+                                <div class="calendar-controls">
+                                    <button><i class="fas fa-chevron-left"></i></button>
+                                    <button><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="calendar-day">Sun</div>
+                                <div class="calendar-day">Mon</div>
+                                <div class="calendar-day">Tue</div>
+                                <div class="calendar-day">Wed</div>
+                                <div class="calendar-day">Thu</div>
+                                <div class="calendar-day">Fri</div>
+                                <div class="calendar-day">Sat</div>
+                                
+                                <div class="calendar-date">30</div>
+                                <div class="calendar-date">31</div>
+                                <div class="calendar-date">1</div>
+                                <div class="calendar-date">2</div>
+                                <div class="calendar-date">3</div>
+                                <div class="calendar-date booked">4</div>
+                                <div class="calendar-date booked">5</div>
+                                
+                                <div class="calendar-date">6</div>
+                                <div class="calendar-date">7</div>
+                                <div class="calendar-date">8</div>
+                                <div class="calendar-date">9</div>
+                                <div class="calendar-date">10</div>
+                                <div class="calendar-date booked">11</div>
+                                <div class="calendar-date booked">12</div>
+                                
+                                <div class="calendar-date">13</div>
+                                <div class="calendar-date">14</div>
+                                <div class="calendar-date">15</div>
+                                <div class="calendar-date">16</div>
+                                <div class="calendar-date">17</div>
+                                <div class="calendar-date booked">18</div>
+                                <div class="calendar-date booked">19</div>
+                                
+                                <div class="calendar-date">20</div>
+                                <div class="calendar-date">21</div>
+                                <div class="calendar-date">22</div>
+                                <div class="calendar-date">23</div>
+                                <div class="calendar-date current">24</div>
+                                <div class="calendar-date available">25</div>
+                                <div class="calendar-date available">26</div>
+                                
+                                <div class="calendar-date available">27</div>
+                                <div class="calendar-date available">28</div>
+                                <div class="calendar-date">29</div>
+                                <div class="calendar-date">30</div>
+                                <div class="calendar-date">1</div>
+                                <div class="calendar-date">2</div>
+                                <div class="calendar-date">3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>EventPro</h2>
+                    </div>
+                    <p>Creating memorable events since 2015. We bring your vision to life with professional planning and flawless execution.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#weddings">Wedding Planning</a></li>
+                        <li><a href="services.html#corporate">Corporate Events</a></li>
+                        <li><a href="services.html#birthdays">Birthday Parties</a></li>
+                        <li><a href="services.html#social">Social Gatherings</a></li>
+                        <li><a href="services.html#decor">Decor & Design</a></li>
+                        <li><a href="services.html#catering">Catering Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Event Street, Suite 300, New York, NY 10001</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@eventpro.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am - 6pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EventPro. All rights reserved.</p>
+                <ul class="footer-legal">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="js/booking.js"></script>
+    <script>
+    // Form validation and basic interactions
+    document.addEventListener('DOMContentLoaded', function() {
+        const bookingForm = document.getElementById('booking-form');
+        const calendarDates = document.querySelectorAll('.calendar-date:not(.disabled):not(.booked)');
+        const eventDateField = document.getElementById('event-date');
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+
+        // Form Submission Handler
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent actual form submission for this demo
+
+                // More robust validation indication
+                let formIsValid = true;
+                const requiredFields = bookingForm.querySelectorAll('[required]');
+
+                requiredFields.forEach(field => {
+                    field.style.borderColor = '#e1e1e1'; // Reset border first
+                    let fieldValid = false;
+
+                    if (field.type === 'checkbox') {
+                        fieldValid = field.checked;
+                    } else if (field.type === 'select-one') {
+                         fieldValid = field.value !== ''; // Check if default disabled option is not selected
+                    } else {
+                        fieldValid = field.value.trim() !== '';
+                    }
+
+                    if (!fieldValid) {
+                        formIsValid = false;
+                        field.style.borderColor = 'var(--primary-color)'; // Highlight invalid field
+                         // Optional: Focus first invalid field
+                        // if(formIsValid) { // only focus the first time
+                        //     field.focus();
+                        //     formIsValid = false; // Set flag after focusing
+                        // }
+                    }
+                });
+
+                if (formIsValid) {
+                    // Form is valid
+                    alert('Thank you! Your booking request has been submitted successfully. Our event planning team will contact you within 24 hours.');
+                    bookingForm.reset(); // Reset form fields
+                     // Reset border colors after successful submission
+                     requiredFields.forEach(field => { field.style.borderColor = '#e1e1e1'; });
+                     // Clear selected calendar date style if any
+                     calendarDates.forEach(d => d.classList.remove('selected'));
+
+                    // In a real application, you would send form data to a server here:
+                    // const formData = new FormData(bookingForm);
+                    // fetch('/api/submit-booking', { method: 'POST', body: formData })
+                    //   .then(response => response.json())
+                    //   .then(data => { console.log('Success:', data); /* Handle success response */ })
+                    //   .catch(error => { console.error('Error:', error); /* Handle error */ });
+
+                } else {
+                    // Form is incomplete
+                    alert('Please fill in all required fields highlighted in red.');
+                }
+            });
+        }
+
+        // Calendar date selection logic
+         if (calendarDates.length > 0 && eventDateField) {
+            // Get the current year and month from the calendar header
+            const calendarHeader = document.querySelector('.calendar-header h4');
+            const [monthName, yearStr] = calendarHeader ? calendarHeader.textContent.split(' ') : ["April", "2025"]; // Default
+            const year = parseInt(yearStr, 10);
+            const monthMap = { "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6, "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12 };
+            const month = monthMap[monthName];
+
+            const clearSelected = () => {
+                calendarDates.forEach(d => d.classList.remove('selected'));
+            };
+
+            calendarDates.forEach(dateElement => {
+                dateElement.addEventListener('click', function() {
+                    clearSelected();
+                    this.classList.add('selected'); // Highlight selected date
+
+                    const day = parseInt(this.textContent, 10);
+
+                    if (year && month && day) {
+                        const formattedMonth = month.toString().padStart(2, '0');
+                        const formattedDay = day.toString().padStart(2, '0');
+                        const selectedDate = `${year}-${formattedMonth}-${formattedDay}`;
+                        eventDateField.value = selectedDate;
+                        eventDateField.style.borderColor = '#e1e1e1'; // Reset border if it was invalid
+                    }
+                });
+            });
+         }
+
+         // Basic Hamburger Menu Toggle
+         if(hamburger && mainNav) {
+             hamburger.addEventListener('click', () => {
+                 mainNav.classList.toggle('active'); // Toggle active class for CSS display
+             });
+         }
+
+    }); // End DOMContentLoaded
+</script>
